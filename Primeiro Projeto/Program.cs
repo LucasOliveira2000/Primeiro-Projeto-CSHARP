@@ -20,10 +20,12 @@ string mensagemDeBoasVindas = "Boas vindas ao Screen Sound";
 
 //List<string> listaDasBandas = new List<string> {"Slipknot", "The Beatles", "Calypson" };   
 
-Dictionary<string, List<int>> bandasRegistradas = new Dictionary<string, List<int>>();
+Dictionary<string, List<int>> bandasRegistradas = new Dictionary<string, List<int>>();//No código fornecido, os valores são do tipo List<int>, que são listas de inteiros representando avaliações.    
+                                                                                        //Dictionary<string, List<int>> indica o tipo do dicionário. Ele é um dicionário que tem chaves do tipo string e valores do tipo List<int>.
 bandasRegistradas.Add("Linkin Park", new List<int> {10,8,6 });
 bandasRegistradas.Add("The Beatles", new List<int>());
-void ExibirLogo()
+void ExibirLogo() // A void é PascalCase, O void, como mencionado anteriormente, é um tipo de retorno usado para indicar que o método não retorna um valor. 
+                   //Ou seja, é utilizado quando o método tem o propósito de executar uma ação ou tarefa,
 {
     Console.WriteLine(@"
 ░██████╗░█████╗░██████╗░███████╗███████╗███╗░░██╗  ░██████╗░█████╗░██╗░░░██╗███╗░░██╗██████╗░
@@ -38,56 +40,58 @@ void ExibirLogo()
 
 }
 
-void ExibirMenu()
+void ExibirMenu() // Criando um função void com o nome "ExibirMenu" onde irei colocaro menu para o usuario escolher qual opção ele quer ir 
 {
-    ExibirLogo();
-    Console.WriteLine("\nDigite 1 para registrar uma banda");
+    ExibirLogo(); // chamo a função
+    Console.WriteLine("\nDigite 1 para registrar uma banda"); // printo na tela, somente mostrando ao usuario as opções que ele pode escolher.
     Console.WriteLine("Digite 2 para mostrar todas  as bandas");
     Console.WriteLine("Digite 3 para avaliar uma banda");
     Console.WriteLine("Digite 4 para exibir a média de uma banda");
     Console.WriteLine("Digite 5 para sair");
-    Console.Write("\nDigite a sua opção: ");
+    Console.Write("\nDigite a sua opção: "); // printa na mesma linha para responder com o Console.ReadLine();
 
 
-    string opcaoEscolhida = Console.ReadLine()!;
-    int opcaoEscolhidaNumerica = int.Parse(opcaoEscolhida); //convertendo opcaoEscolhida para inteiro
+    string opcaoEscolhida = Console.ReadLine()!; // Estamos declarando uma variavel "opcaoEscolhida " camelCase e colocamos o tipo de retorno dela para string, onde ao final não queromos que,
+                                                // ela seja nula, ai colocamos a ! , o que é necessário para atribuição a uma variável que não é do tipo nullable.
+    int opcaoEscolhidaNumerica = int.Parse(opcaoEscolhida); // Quando o usuario escreve na tela no Console.ReadLine()!; a resposta ela vem em string, criamos uma nova variavel
+                                                            // declaramos ela int, e colocamos int.Parse que é um método estatico onde convertemos a string em valores numericos.
 
-    switch (opcaoEscolhidaNumerica)
+    switch (opcaoEscolhidaNumerica) // o switch é uma condicional parecida com if e else, e utilizada para trabalhar quando a logica do programa é parecida.
     {
-        case 1:
+        case 1: // Caso opcaoEscolhidaNumerica seja igual a 1
             RegistrarBanda();
-            break;
+            break; // O break; indica que, após executar o código do case 1, o programa deve sair do switch e continuar a execução a partir da linha seguinte ao switch.
 
-        case 2:
+        case 2: // Caso opcaoEscolhidaNumerica seja igual a 2
             MostrarBandasRegistradas();
             break;
 
-        case 3:
+        case 3: // Caso opcaoEscolhidaNumerica seja igual a 3
             AvaliarUmaBanda();
             break;
 
-        case 4:
+        case 4: // Caso opcaoEscolhidaNumerica seja igual a 4
             ExibirMedia();
             break;
 
-        case 5:
+        case 5: // Caso opcaoEscolhidaNumerica seja igual a 5
             Console.WriteLine("Tchau volte sempre (>°__°)> ");
             break;
 
-        default:
+        default: // Caso opcaoEscolhidaNumerica não seja nenhum dos casos acima (default), É uma forma de garantir que o programa não deixe de responder ou execute comportamentos indesejados quando uma entrada não esperada é recebida.
             Console.WriteLine("Opção inválida!");
             break;
 
     }
 }
-void RegistrarBanda()
+void RegistrarBanda() // Chamamos a palavra reservada void para trazer e criar a Função RegistrarBanda para posteriormente chama-la
 {
-    Console.Clear();
-    ExibirTituloDaOpcao("Registro das Bandas");
+    Console.Clear(); // Limpamos o console
+    ExibirTituloDaOpcao("Registro das Bandas"); // chamamos o void com o ExibirTituloDaOpcao
     Console.Write("\nDigite o nome da banda que deseja registrar: ");
-    string nomeDaBanda = Console.ReadLine()!;
+    string nomeDaBanda = Console.ReadLine()!; 
     //listaDasBandas.Add(nomeDaBanda);
-    bandasRegistradas.Add(nomeDaBanda, new List<int>());
+    bandasRegistradas.Add(nomeDaBanda, new List<int>()); // Chamamos o nosso dicionario e adicionamos com o .Add a variavel do tipo string nomeDaBanda, e adicionamos somente a chave que no caso é o nome da banda.
     Console.WriteLine($"\nA Banda {nomeDaBanda} foi registrada, aperte qualquer tecla para voltar ao menu principal.");
     Console.ReadKey();
     Console.Clear();
@@ -103,25 +107,26 @@ void MostrarBandasRegistradas()
         //Console.WriteLine($"Bandas: {listaDasBandas[i]}");
     //}
 
-    foreach (string banda in bandasRegistradas.Keys) // Para cada banda dentro de listaDasBandas
+    foreach (string banda in bandasRegistradas.Keys) // Para cada banda dentro de listaDasBandas, foreach (string banda in bandasRegistradas.Keys): Essa é uma estrutura de loop que percorre cada chave (nomes de bandas) no dicionário bandasRegistradas. 
+                                                    //O Keys é uma propriedade do dicionário que retorna um conjunto de chaves do dicionário (no caso, os nomes das bandas).
     {
         Console.WriteLine($"Banda: {banda}"); // Printe para mim as bandas
 
     }
 
     Console.WriteLine("\nAperte qualquer tecla para voltar ao menu principal");
-    Console.ReadKey(); // Qualquer tecla que for digitada ele vai me retornar para o menu principal
+    Console.ReadKey(); // Console.ReadKey(): Aguarda o usuário pressionar qualquer tecla. A execução do programa é suspensa até que o usuário pressione uma tecla.
     Console.Clear(); //Limpa
     ExibirMenu(); // E chama para mim o Menu
 }
 
 void ExibirTituloDaOpcao(string titulo)
 {
-    int quantidadeDeLetras = titulo.Length;
-    string simbolo = string.Empty.PadLeft(quantidadeDeLetras, '*');
-    Console.WriteLine(simbolo);
+    int quantidadeDeLetras = titulo.Length; // Calcula a quantidade de letras no título
+    string simbolo = string.Empty.PadLeft(quantidadeDeLetras, '*'); // Cria uma string com um símbolo '*' repetido a quantidade de vezes igual à quantidadeDeLetras
+    Console.WriteLine(simbolo);  // Imprime o símbolo '*' que delimita o topo do título
     Console.WriteLine(titulo);
-    Console.WriteLine(simbolo + "\n");
+    Console.WriteLine(simbolo + "\n");     // Imprime o símbolo '*' que delimita a parte de baixo do título
 }
 
 
@@ -136,20 +141,20 @@ void AvaliarUmaBanda()
     Console.Write("Digite o nome da banda que deseja avaliar: ");
     string nomeDaBanda = Console.ReadLine()!;
     
-    if (bandasRegistradas.ContainsKey(nomeDaBanda))
+    if (bandasRegistradas.ContainsKey(nomeDaBanda)) // Verifica se a banda existe no dicionário bandasRegistradas
     {
-        Console.Write($"\nQual a nota que a banda {nomeDaBanda} merece: ");
-        int nota = int.Parse(Console.ReadLine()!);
-        bandasRegistradas[nomeDaBanda].Add(nota);
+        Console.Write($"\nQual a nota que a banda {nomeDaBanda} merece: "); // Se a banda existir, solicita ao usuário que atribua uma nota à banda
+        int nota = int.Parse(Console.ReadLine()!); // Lê a nota digitada pelo usuário e a converte para o tipo inteiro.
+        bandasRegistradas[nomeDaBanda].Add(nota); // Adiciona a nota à lista de avaliações da banda no dicionário
         Console.WriteLine($"\nA nota {nota} foi registrada com sucesso para a banda {nomeDaBanda}, digite uma tecla para voltar ao menu principal. ");
         Console.ReadKey();
         Console.Clear();
         ExibirMenu();
     }
     
-    else
+    else 
     {
-        Console.WriteLine($"\nA banda {nomeDaBanda} não foi encontrada");
+        Console.WriteLine($"\nA banda {nomeDaBanda} não foi encontrada"); // Caso a banda não exista no dicionário, exibe uma mensagem informando que a banda não foi encontrada
         Console.WriteLine("\nDigite uma tecla para voltar ao menu principal");
         Console.ReadKey();
         Console.Clear();
@@ -163,20 +168,20 @@ void ExibirMedia()
 {
     Console.Clear();
     ExibirTituloDaOpcao("Exibir média da banda");
-    Console.Write("Digite o nome da banda que deseja exibi a média: ");
+    Console.Write("Digite o nome da banda que deseja exibi a média: "); // Solicita ao usuário que digite o nome da banda cuja média deseja exibir
     string nomeDaBanda = Console.ReadLine()!;
-    if (bandasRegistradas.ContainsKey(nomeDaBanda))
+    if (bandasRegistradas.ContainsKey(nomeDaBanda)) // Verifica se a banda existe no dicionário bandasRegistradas
     {
-        List<int> notasDaBanda = bandasRegistradas[nomeDaBanda];
-        Console.WriteLine($"\nA média da banda {nomeDaBanda} é {notasDaBanda.Average()}."); //Average tira a média das notas
+        List<int> notasDaBanda = bandasRegistradas[nomeDaBanda];  // Se a banda existir, obtém a lista de notas da banda, a. List<int> notasDaBanda = bandasRegistradas[nomeDaBanda];: Obtém a lista de notas da banda utilizando o nome da banda como chave para acessar o valor (a lista de notas) no dicionário bandasRegistradas.
+        Console.WriteLine($"\nA média da banda {nomeDaBanda} é {notasDaBanda.Average()}."); // Calcula e exibe a média das notas da banda usando o método Average() da lista
         Console.WriteLine("\nDigite uma tecla para voltar ao menu principal");
         Console.ReadKey();
         Console.Clear();
         ExibirMenu();
     }
-    else
+    else 
     {
-        Console.WriteLine($"\nA banda {nomeDaBanda} não foi encontrada");
+        Console.WriteLine($"\nA banda {nomeDaBanda} não foi encontrada"); // Caso a banda não exista no dicionário, exibe uma mensagem informando que a banda não foi encontrada
         Console.WriteLine("\nDigite uma tecla para voltar ao menu principal");
         Console.ReadKey();
         Console.Clear();
